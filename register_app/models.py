@@ -3,7 +3,7 @@ from django.db import models
 
 # Create your models here.
 class Permission(models.Model):
-    description = models.CharField(max_length=500)
+    description = models.CharField(max_length=500, help_text="Description of this privillage")
     is_Admin = models.BooleanField()
 
     def __str__(self):
