@@ -3,9 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>Html templates</title>
+    <style>
+        .customer{
+            background-color: gainsboro;
+            margin: 5px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
     <h1>This is a html templates file...!</h1>
-    <span>{{ title }}</span> : &nbsp;<b>{{ value }}</b>
+    {% for item in customers %}
+    <div class="customer">
+        <ul>
+            <li>Name: {{ item.name }}</li>
+            <li>Family: {{ item.family }}</li>
+            <li>Mobile: {{ item.mobile }}</li>
+            <li>Avg: {{ item.avg }}</li>
+        </ul>
+    </div>
+    {% endfor %}
 </body>
 </html>
