@@ -1,0 +1,26 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+{% for item in posts %}
+    <div class="posts">
+        <span>Title: </span>
+        <b>{{ item.title }}</b>
+        <br/>
+        <span>Content: </span>
+        <p>{{ item.content }}</p>
+
+        <span>Author:</span>
+        <b>{{ item.author }}</b>
+        <br/>
+        <span>Publish Date: </span>
+        <b>{{ item.publish_date }}</b>
+    </div>
+{% endfor %}
+</body>
+</html>

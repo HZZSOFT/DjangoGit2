@@ -20,5 +20,6 @@ from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^', views.index)
+    path('index/', views.index),
+    path('posts/', views.posts),
 ]
