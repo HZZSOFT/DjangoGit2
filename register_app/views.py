@@ -1,7 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
 
 # Create your views here.
 def index(request):
-    return HttpResponse("<h1>This is a first view...!</h1>")
+    name = 'phone number'
+    value = '09384677005'
+    context ={'title':name,
+              'value':value}
+    return render(request, 'index.html', context)
