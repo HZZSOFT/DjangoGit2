@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
 </head>
 <body>
+{% if request.user.is_authenticated %}
+    <h1>Welcome {{ request.user.username }}</h1>
 {% for item in posts %}
     <div class="posts">
         <span>Title: </span>
@@ -22,5 +24,8 @@
         <b>{{ item.publish_date }}</b>
     </div>
 {% endfor %}
+    {% else %}
+    <h1> Sorry! you must be logged in...</h1>
+{% endif %}
 </body>
 </html>
