@@ -24,6 +24,8 @@
         <b>{{ item.publish_date }}</b>
     </div>
 {% endfor %}
+    <hr />
+    <a href="{% url 'new_post' %}">New Post</a>
     {% else %}
     <h1> Sorry! you must be logged in...</h1>
 {% endif %}
