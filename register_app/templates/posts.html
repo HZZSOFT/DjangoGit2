@@ -1,14 +1,7 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Posts</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-</head>
-<body>
-{% if request.user.is_authenticated %}
-    <h1>Welcome {{ request.user.username }}</h1>
+{% extends 'base.html' %}
+
+
+{% block content %}
 {% for item in posts %}
     <div class="posts">
         <span>Title: </span>
@@ -26,8 +19,4 @@
 {% endfor %}
     <hr />
     <a href="{% url 'new_post' %}">New Post</a>
-    {% else %}
-    <h1> Sorry! you must be logged in...</h1>
-{% endif %}
-</body>
-</html>
+{% endblock %}
