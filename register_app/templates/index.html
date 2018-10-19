@@ -1,24 +1,20 @@
-{% load staticfiles %}
+{% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-</head>
-<body>
-    <h1>Home</h1>
-    <h2>This is a html templates file...! </h2>
-    {% for item in customers %}
-    <div class="customer">
-        <ul>
-            <li>Name: {{ item.name }}</li>
-            <li>Family: {{ item.family }}</li>
-            <li>Mobile: {{ item.mobile }}</li>
-            <li>Avg: {{ item.avg }}</li>
-        </ul>
+
+{% block content %}
+{% for item in posts %}
+    <div class="posts">
+        <span>Title: </span>
+        <b>{{ item.title }}</b>
+        <br/>
+        <span>Content: </span>
+        <p>{{ item.content }}</p>
+
+        <span>Author:</span>
+        <b>{{ item.author }}</b>
+        <br/>
+        <span>Publish Date: </span>
+        <b>{{ item.publish_date }}</b>
     </div>
-    {% endfor %}
-</body>
-</html>
+{% endfor %}
+{% endblock %}
