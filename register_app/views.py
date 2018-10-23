@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
-from .models import Post
-from .forms import PostForm
+from django.shortcuts import render, get_object_or_404
+from .models import Post, Comment
+from .forms import PostForm, CommentForm
 from django.shortcuts import redirect
 from django.contrib.auth import logout
 
@@ -10,6 +10,11 @@ from django.contrib.auth import logout
 def index(request):
     all_post = Post.objects.all()
     return render(request, 'index.html', {'posts': all_post})
+
+
+def post_detail(request, post):
+    post1 = get_object_or_404(Post, title=post)
+    return render(request, 'post_detail.html', {'post': post1})
 
 
 def logout_view(request):

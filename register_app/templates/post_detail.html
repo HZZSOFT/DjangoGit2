@@ -2,18 +2,17 @@
 
 
 {% block content %}
-{% for item in posts %}
     <div class="posts">
-         <h2><a href="{{ item.get_absolute_url }}">{{ item.title }} </a></h2>
+
+        <b>{{ post.title }}</b>
         <br/>
         <span>Content: </span>
-        <p>{{ item.content }}</p>
+        <p>{{ post.content }}</p>
 
         <span>Author:</span>
-        <b>{{ item.author }}</b>
+        <b>{{ post.author }}</b>
         <br/>
         <span>Publish Date: </span>
-        <b>{{ item.publish_date }}</b>
+        <b>{{ post.publish_date }}</b>
     </div>
-{% endfor %}
 {% endblock %}

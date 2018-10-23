@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+from django.urls import reverse
 
 
 # Create your models here.
@@ -25,18 +27,26 @@ class User(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
-    publish_date = models.DateTimeField()
+    publish_date = models.DateTimeField(default=timezone.now())
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('post_detail', args=[self.title])
+
 
 class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    post = models.ForeignKey(Post, on_delete=models.SET_NULL, null=True)
+    post = models.ForeignKey(Post, related_name='comments', on_delete=models.SET_NULL, null=True)
+    name = models.CharField(max_length=100, null=True)
+    email = models.EmailField(null=True)
     content = models.TextField()
-    comment_date = models.DateTimeField
+    comment_date = models.DateTimeField(default=timezone.now())
+    active = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ('comment_date',)
 
     def __str__(self):
-        return self.content
+        return 'comment by {} on {}'.format(self.name, self.post)
