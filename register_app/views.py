@@ -39,7 +39,7 @@ def new_post(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.save()
-            return redirect('views.posts')
+            return redirect('posts')
     else:
         form = PostForm()
     return render(request, 'new_post.html', {'form': form})
