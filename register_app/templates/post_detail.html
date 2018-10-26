@@ -14,5 +14,16 @@
         <br/>
         <span>Publish Date: </span>
         <b>{{ post.publish_date }}</b>
+
     </div>
+    <hr>
+    {% for comment in post.comments.all %}
+        <div class="comment">
+            <div class="date">{{ comment.comment_date }}</div>
+            <strong>{{ comment.name }}</strong>
+            <p>{{ comment.content }}</p>
+        </div>
+    {% empty %}
+        <p>No comments here yet :(</p>
+    {% endfor %}
 {% endblock %}

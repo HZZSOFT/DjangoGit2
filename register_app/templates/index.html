@@ -14,6 +14,8 @@
         <br/>
         <span>Publish Date: </span>
         <b>{{ item.publish_date }}</b>
+        <br />
+        <span>Comments: {{ item.comments.count }}</span>
     </div>
 {% endfor %}
 {% endblock %}
