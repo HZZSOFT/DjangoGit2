@@ -1,9 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
-from .models import Post
+from .models import Post, Comment
 from .forms import PostForm, CommentForm
 from django.shortcuts import redirect
 from django.contrib.auth import logout
+from django.views.generic import TemplateView
 
 
 # Create your views here.
@@ -61,3 +62,16 @@ def new_post(request):
 @login_required()
 def panel(request):
     return render(request, 'panel/panel.html', {})
+
+
+class CommentList(TemplateView):
+    template_name = 'panel/comment_list.html'
+
+    comments = Comment.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = ({
+            'comments': self.comments,
+        })
+        return context
+
