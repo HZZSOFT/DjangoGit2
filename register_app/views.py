@@ -12,8 +12,8 @@ def index(request):
     return render(request, 'index.html', {'posts': all_post})
 
 
-def post_detail(request, post):
-    post = get_object_or_404(Post, title=post)
+def post_detail(request, slug):
+    post = get_object_or_404(Post, slug=slug)
     comments = post.comments.filter(active=True)
     if request.method == 'POST':
         comment_form = CommentForm(data=request.POST)
@@ -50,7 +50,7 @@ def new_post(request):
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
-            post = form.save(commit=False)
+            post = form.save()
             post.save()
             return redirect('posts')
     else:

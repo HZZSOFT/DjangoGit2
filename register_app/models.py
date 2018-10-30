@@ -25,7 +25,8 @@ class User(models.Model):
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=100, unique=True)
+    title = models.CharField(max_length=50, unique=True)
+    slug = models.SlugField(max_length=50, default=timezone.now())
     content = models.TextField()
     publish_date = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='author')
@@ -34,7 +35,7 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('post_detail', args=[self.title])
+        return reverse('post_detail', args=[self.slug])
 
 
 class Comment(models.Model):
