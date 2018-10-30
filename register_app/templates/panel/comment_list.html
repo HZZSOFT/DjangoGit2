@@ -3,11 +3,72 @@
 {% block content %}
 
     <div>
-         {% for comment in comments %}
-        <p>
-            {{ comment.content }}
-        </p>
+        <h2>List of comments:</h2>
+
+        <table>
+        <thead>
+            <tr>
+                <th>
+                    <span>Author</span>
+                </th>
+                <th>
+                    <span>Comment</span>
+                </th>
+                 <th>
+                    <span>Post</span>
+                </th>
+                 <th>
+                    <span>Date</span>
+                </th>
+                 <th>
+                    <span>Active</span>
+                </th>
+                <th>
+                    <span>Change</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for comment in comments %}
+            <tr>
+            <td>
+                    <span>
+                       {{ comment.name }}
+                    </span>
+            </td>
+            <td class="content">
+                    <span>
+                       {{ comment.content }}
+                    </span>
+                </td>
+            <td>
+                    <span>
+                       {{ comment.post }}
+                    </span>
+                </td>
+            <td>
+                    <span>
+                       {{ comment.comment_date }}
+                    </span>
+                </td>
+            <td>
+
+                    <input type="checkbox" disabled {% if comment.active %} checked {% else %} {% endif %}/>
+
+                </td>
+            <td>
+                    {% if comment.active != True %}
+                    <input type="button" value="Active"/>
+                    {% endif %}
+                </td>
+            </tr>
         {% endfor %}
+        </tbody>
+        </table>
+
+
+
+
     </div>
 
 {% endblock %}

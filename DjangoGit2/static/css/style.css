@@ -206,3 +206,8 @@ textarea {
     border-radius: 2px;
     font-family: arial, sans-serif;
 }
+
+td.content{
+    width: 50%;
+}
+
