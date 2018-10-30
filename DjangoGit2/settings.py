@@ -55,7 +55,7 @@ ROOT_URLCONF = 'DjangoGit2.urls'
 
 LOGIN_URL = '/login/'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/panel/panel'
 
 TEMPLATES = [
     {

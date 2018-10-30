@@ -32,7 +32,7 @@ def post_detail(request, slug):
 
 def logout_view(request):
     logout(request)
-    return render(request, 'logout.html')
+    return render(request, 'panel/logout.html')
 
 
 def login():
@@ -42,7 +42,7 @@ def login():
 @login_required
 def posts(request):
     all_post = Post.objects.all()
-    return render(request, 'posts.html', {'posts': all_post})
+    return render(request, 'panel/posts.html', {'posts': all_post})
 
 
 @login_required
@@ -55,4 +55,9 @@ def new_post(request):
             return redirect('posts')
     else:
         form = PostForm()
-    return render(request, 'new_post.html', {'form': form})
+    return render(request, 'panel/new_post.html', {'form': form})
+
+
+@login_required()
+def panel(request):
+    return render(request, 'panel/panel.html', {})
