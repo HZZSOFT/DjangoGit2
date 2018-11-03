@@ -13,7 +13,8 @@ urlpatterns = [
     path('panel/posts/new/', views.new_post, name='new_post'),
     path('panel/posts/', views.posts, name='posts'),
     path('panel/panel/', views.panel, name='panel'),
-    path('panel/comments/', login_required(CommentList.as_view()), name="comment_list")
+    path('panel/comments/', login_required(CommentList.as_view()), name="comment_list"),
+    path('panel/approve_comment/', views.approve_comment, name='approve_comment'),
 ]
 #    path('index/', views.index),
 #    path('posts/', views.posts),

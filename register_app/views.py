@@ -75,3 +75,13 @@ class CommentList(TemplateView):
         })
         return context
 
+
+@login_required()
+def approve_comment(request):
+    current_id = request.GET.get('id')
+
+    comment = Comment.objects.get(id=current_id)
+    comment.active = True
+    comment.save()
+
+    return render(request, "panel/approve_comment.html", {'comment': comment})

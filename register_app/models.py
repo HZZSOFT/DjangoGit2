@@ -14,7 +14,7 @@ class Permission(models.Model):
 
 class User(models.Model):
     permission = models.ForeignKey(Permission, on_delete=models.CASCADE)
-    username = models.CharField(max_length=200)
+    username = models.CharField(max_length=200, unique=True)
     password = models.CharField(max_length=20)
     mobile = models.CharField(max_length=11, null=True)
     address = models.CharField(max_length=500, null=True)
@@ -45,6 +45,7 @@ class Comment(models.Model):
     content = models.TextField()
     comment_date = models.DateTimeField(default=timezone.now)
     active = models.BooleanField(default=False)
+    id = models.AutoField(primary_key=True)
 
     class Meta:
         ordering = ('comment_date',)

@@ -58,7 +58,7 @@
                 </td>
             <td>
                     {% if comment.active != True %}
-                    <input type="button" value="Active"/>
+                        <a href="{% url 'approve_comment' %}?id={{ comment.id }}">Active</a>
                     {% endif %}
                 </td>
             </tr>
