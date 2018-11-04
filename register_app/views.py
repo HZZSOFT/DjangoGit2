@@ -5,7 +5,7 @@ from .forms import PostForm, CommentForm
 from django.shortcuts import redirect
 from django.contrib.auth import logout
 from django.views.generic import TemplateView
-
+from django.http import HttpResponse
 
 # Create your views here.
 def index(request):
@@ -79,9 +79,11 @@ class CommentList(TemplateView):
 @login_required()
 def approve_comment(request):
     current_id = request.GET.get('id')
-
-    comment = Comment.objects.get(id=current_id)
-    comment.active = True
-    comment.save()
-
+    try:
+        comment = Comment.objects.get(id=current_id)
+        comment.active = True
+        comment.save()
+    except Comment.DoesNotExist:
+        return HttpResponse("<div style='height: 200px;width:200px;margin: 0 auto;padding: 50px;'>"
+                            "<h3>Comment not found</h3><div>")
     return render(request, "panel/approve_comment.html", {'comment': comment})
