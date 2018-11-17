@@ -1,27 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
-
-
-# Create your models here.
-class Permission(models.Model):
-    description = models.CharField(max_length=200, help_text="Description of this privillage")
-    is_Admin = models.BooleanField()
-
-    def __str__(self):
-        return self.description
-
-
-class User(models.Model):
-    permission = models.ForeignKey(Permission, on_delete=models.CASCADE)
-    username = models.CharField(max_length=200, unique=True)
-    password = models.CharField(max_length=20)
-    mobile = models.CharField(max_length=11, null=True)
-    address = models.CharField(max_length=500, null=True)
-    email = models.EmailField(null=True)
-
-    def __str__(self):
-        return self.username
+from django.contrib.auth.models import User
 
 
 class Post(models.Model):
