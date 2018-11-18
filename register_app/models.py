@@ -30,6 +30,5 @@ class Comment(models.Model):
     class Meta:
         ordering = ('comment_date',)
 
-
     def __str__(self):
         return self.content
