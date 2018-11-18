@@ -6,6 +6,8 @@ from django.shortcuts import redirect
 from django.contrib.auth import logout
 from django.views.generic import TemplateView
 from django.http import HttpResponse
+from django.contrib.auth.forms import UserCreationForm
+
 
 # Create your views here.
 def index(request):
@@ -87,3 +89,16 @@ def approve_comment(request):
         return HttpResponse("<div style='height: 200px;width:200px;margin: 0 auto;padding: 50px;'>"
                             "<h3>Comment not found</h3><div>")
     return render(request, "panel/approve_comment.html", {'comment': comment})
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    else:
+        form = UserCreationForm()
+
+        args = {'form': form}
+        return render(request, 'registration/signup.html', args)
