@@ -1,12 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from .models import Post, Comment
-from .forms import PostForm, CommentForm
+from .forms import PostForm, CommentForm, SignUpForm
 from django.shortcuts import redirect
 from django.contrib.auth import logout
 from django.views.generic import TemplateView
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, authenticate
 
 
 # Create your views here.
@@ -93,12 +94,10 @@ def approve_comment(request):
 
 def signup(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = SignUpForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/')
     else:
-        form = UserCreationForm()
-
-        args = {'form': form}
-        return render(request, 'registration/signup.html', args)
+        form = SignUpForm()
+    return render(request, 'registration/signup.html', {'form': form})
