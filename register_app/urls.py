@@ -16,6 +16,8 @@ urlpatterns = [
     path('panel/comments/', login_required(CommentList.as_view()), name="comment_list"),
     path('panel/approve_comment/', views.approve_comment, name='approve_comment'),
     path('registration/signup/', views.signup, name='signup'),
+    path('panel/profile/', views.profile, name='profile'),
+    path('panel/profile/edit/', views.edit_profile, name='edit_profile'),
 ]
 #    path('index/', views.index),
 #    path('posts/', views.posts),

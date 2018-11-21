@@ -6,8 +6,8 @@ from django.shortcuts import redirect
 from django.contrib.auth import logout
 from django.views.generic import TemplateView
 from django.http import HttpResponse
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login, authenticate
+from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -101,3 +101,23 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
+
+
+@login_required()
+def profile(request):
+    args = {'user': request.user}
+    return render(request, 'panel/profile.html', args)
+
+
+@login_required()
+def edit_profile(request):
+    if request.method == 'POST':
+        form = UserChangeForm(request.POST, instance=request.user)
+
+        if form.is_valid():
+            form.save()
+            return redirect('/panel/profile/')
+    else:
+        form = UserChangeForm(instance=request.user)
+        args = {'form': form}
+        return render(request, 'panel/edit_profile.html', args)
