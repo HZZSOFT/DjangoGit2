@@ -2,6 +2,7 @@
 {% block title %}My Blog - Panel{% endblock %}
 {% block content %}
     <ul>
+        <li><a href="{% url 'posts' %}">All Posts</a> </li>
         <li><a href="{% url 'new_post' %}">Add New Post</a> </li>
         <li><a href="{% url 'comment_list' %}">Manage Comments</a> </li>
     </ul>
