@@ -18,6 +18,7 @@ urlpatterns = [
     path('registration/signup/', views.signup, name='signup'),
     path('panel/profile/', views.profile, name='profile'),
     path('panel/profile/edit/', views.edit_profile, name='edit_profile'),
+    path('panel/profile/password/', views.change_password, name='change_password'),
 ]
 #    path('index/', views.index),
 #    path('posts/', views.posts),
