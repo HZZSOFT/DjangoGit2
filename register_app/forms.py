@@ -8,11 +8,12 @@ from django.contrib.auth.models import User
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'content', 'publish_date', 'author')
+        fields = ('title', 'content', 'publish_date')
 
-    def save(self):
+    def save(self, request):
         instance = super(PostForm, self).save(commit=False)
         instance.slug = slugify(instance.title)
+        instance.author = request.user
         instance.save()
 
         return instance
